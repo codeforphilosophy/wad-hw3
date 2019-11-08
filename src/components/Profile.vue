@@ -1,5 +1,5 @@
 <template>
-  <div id="profile-container" class="tab active">
+  <div id="profile-container" v-show="show">
         <div id="profile">
             <div class="avatar">
                 <img src="../assets/me.png" id="picture" alt="My picture">
@@ -23,7 +23,8 @@
 export default {
     name: 'Profile',
     props: {
-        user: Object
+        user: Object,
+        show: Boolean
     }
 }
 </script>
