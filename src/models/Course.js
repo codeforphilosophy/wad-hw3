@@ -4,4 +4,4 @@ export default class Course{
         this.semester = semester;
         this.grade = grade;
     }
-};
+}
