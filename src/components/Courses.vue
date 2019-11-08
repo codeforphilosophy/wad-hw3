@@ -22,8 +22,8 @@
         <br>
         <br>
         <div>
-            <button id="add-course-button" class="blue-button">+</button>
-            <span id="add-course">
+            <button id="add-course-button" @click="toggleAddCourse" class="blue-button">+</button>
+            <span id="add-course" v-show="addCourseVisible">
                 <input class="input" type="text" placeholder="Course title" id="title">
                 <input class="input" type="number" min="1" max="8" placeholder="Semester" id="semester">
                 <input class="input" type="number" min="0" max="100" placeholder="Grade" id="grade">
@@ -46,15 +46,47 @@ export default {
                 new Course("System modeling", "1", "85"),
                 new Course("Object-oriented programming", "2", "99"),
                 new Course("Estonian language Level A2", "2", "65") ],
+            addCourseVisible: false
         }
     },
     props: {
         show: Boolean
+    },
+    methods: {
+        toggleAddCourse: function (){
+            this.addCourseVisible= !this.addCourseVisible;
+        }
     }
-
 }
 </script>
 
 <style>
+    .input {
+        border: 1px solid #cccccc;
+        padding: 10px 20px;
+        min-width: 135px;
+        margin: 2px;
+    }
 
+    .blue-button {
+        background-color: #2196F3;
+        color: #ffffff;
+        border: none;
+        padding: 10px 20px;
+    }
+
+    .green-button {
+        background-color: #69f378;
+        color: #ffffff;
+        border: none;
+        padding: 10px 10px;
+        margin-right: 2px;
+    }
+
+    .grey-button {
+        background-color: #e1e8e6;
+        color: #ffffff;
+        border: none;
+        padding: 10px 20px;
+    }
 </style>
