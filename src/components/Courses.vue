@@ -50,7 +50,7 @@ export default {
 
             addedCourseTitle: "",
             addedCourseSemester: "",
-            addedCourseGrade: "",
+            addedCourseGrade: ""
         }
     },
     props: {
@@ -64,14 +64,37 @@ export default {
             let newCourse = new Course(this.addedCourseTitle, this.addedCourseSemester, this.addedCourseGrade);
             this.courses.push(newCourse);
             this.clearAddCourseForm();
+            this.$emit("courseAdded", this.recalculateGPA)
         },
         clearAddCourseForm: function(){
             this.addedCourseTitle = ""
             this.addedCourseSemester = ""
             this.addedCourseGrade = ""
         }
-    }
+    },
+    computed: {
+        recalculateGPA: function(){
+            var points = 0;
+            for (let i = 0; i < this.courses.length; i++) {
+                var point=0;
+                if (this.courses[i].grade > 90) {
+                    point = 4; 
+                } else if (this.courses[i].grade > 80) {
+                    point = 3;
+                } else if (this.courses[i].grade > 70) {
+                    point = 2;
+                } else if (this.courses[i].grade > 60) {
+                    point = 1;
+                } else if (this.courses[i].grade > 50) {
+                    point = 0.5;
+                } 
+                points += point;
+            }
+            return Math.round(points / this.courses.length* 100) / 100;
+        }
+    }   
 }
+
 </script>
 
 <style>

@@ -5,7 +5,7 @@
             <section id="main">
                 <div class="content">
                     <Profile :user="user" :show="profileActive"/>
-                    <Courses :show="coursesActive"></Courses>
+                    <Courses :show="coursesActive" @courseAdded="updateUserGPA($event)"></Courses>
                 </div>
                 <div class="controls">
                     <button id="profile-button" @click="togglePill" :class="{pill: true, active: profileActive}">Profile</button>
@@ -35,8 +35,8 @@
         data: () => {
             return { 
                user: new User("Johni", "Doe", "11/10/1990", "Software Engineering", "2.75"),
-               profileActive: false,
-               coursesActive: true
+               profileActive: true,
+               coursesActive: false
             }
         },
         methods: {
@@ -50,6 +50,9 @@
                 //     this.profileActive = false
                 //     this.coursesActive = true
                 // }
+            },
+            updateUserGPA: function(newGPA){
+                this.user.gpa = newGPA;
             }
         }
     }
