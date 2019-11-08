@@ -1,29 +1,10 @@
 <template>
     <main id="app">
-        <header>
-            <strong>Welcome to your dashboard!</strong>
-        </header>
+        <app-header></app-header>
         <section id="container">
             <section id="main">
                 <div class="content">
-                    <div id="profile-container" class="tab active">
-                        <div id="profile">
-                            <div class="avatar">
-                                <img src="./assets/me.png" id="picture" alt="My picture">
-                            </div>
-                            <div class="info">
-                                <ul>
-                                    <li id="name">John Doe</li>
-                                    <li id="birthdate">11/10/1990</li>
-                                    <li id="faculty">Software Engineering</li>
-                                </ul>
-                            </div>
-                            <div id="gpa">
-                                <strong>2.75</strong>
-                            </div>
-                            <div class="clear-fix"></div>
-                        </div>
-                    </div>
+                    <Profile :user="user"/>
                     <div id="courses-container" class="tab">
                         <h1 class="title">Courses</h1>
                         <table id="courses">
@@ -82,24 +63,29 @@
                 </div>
             </section>
         </section>
-        <footer>
-            <ul class="links">
-                <li>
-                    <a href="https://ois2.ut.ee/" target="_blank">OIS</a>
-                </li>
-                <li>
-                    <a href="https://courses.cs.ut.ee/" target="_blank">Courses</a>
-                </li>
-            </ul>
-        </footer>
+        <app-footer></app-footer>
     </main>
 </template>
 
 <script>
+    import Header from './components/Header.vue'
+    import Footer from './components/Footer.vue'
+    import Profile from './components/Profile.vue'
+    import User from './models/User'
 
     export default {
         name: 'app',
-        components: {}
+        components: {
+            'app-header': Header,
+            'app-footer': Footer,
+            Profile
+        },
+        data: () => {
+            return { 
+               user: new User("Johni", "Doe", "11/10/1990", "Software Engineering", "2.75")
+                
+            }
+        }
     }
 </script>
 
@@ -125,15 +111,6 @@
 
     .clear-fix {
         clear: both;
-    }
-
-    header {
-        padding: 20px;
-        background-color: #2196F3;
-        color: #ffffff;
-        text-align: center;
-        margin-bottom: 10px;
-        height: 60px;
     }
 
     footer {
@@ -171,49 +148,6 @@
         padding: 15px;
         background-color: #ffffff;
         margin: 0 auto;
-    }
-
-    #profile {
-        border-bottom: 1px dashed #a7a7a7;
-        padding-bottom: 10px;
-        margin-bottom: 10px;
-    }
-
-    #profile div:not(.clear-fix) {
-        height: 190px;
-        float: left;
-        position: relative;
-    }
-
-    #profile .avatar {
-        width: 35%;
-        text-align: center;
-    }
-
-    #profile .avatar img {
-        width: 180px;
-    }
-
-    #profile .info {
-        width: 45%;
-    }
-
-    #profile #gpa {
-        width: 20%;
-    }
-
-    #profile #gpa strong {
-        position: absolute;
-        width: 100%;
-        height: 60px;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        margin: auto auto;
-        font-size: 60px;
-        line-height: 60px;
-        text-align: center;
     }
 
     .content {
