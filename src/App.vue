@@ -43,13 +43,6 @@
             togglePill: function(){
                 this.coursesActive = !this.coursesActive;
                 this.profileActive = !this.profileActive;
-                // if(!this.profileActive){
-                //     this.profileActive = true
-                //     this.coursesActive =false
-                // }else{
-                //     this.profileActive = false
-                //     this.coursesActive = true
-                // }
             },
             updateUserGPA: function(newGPA){
                 this.user.gpa = newGPA;
