@@ -28,7 +28,7 @@
                 <input class="input" v-model="addedCourseSemester"  type="number" min="1" max="8" placeholder="Semester" id="semester">
                 <input class="input" v-model="addedCourseGrade"  type="number" min="0" max="100" placeholder="Grade" id="grade">
                 <button class="green-button" id="save-course" @click="addNewCourse">Save</button>
-                <button class="grey-button" id="cancel-course">Cancel</button>
+                <button class="grey-button" id="cancel-course" @click="clearAddCourseForm">Cancel</button>
             </span>
         </div>
     </div>
@@ -63,6 +63,12 @@ export default {
         addNewCourse: function(){
             let newCourse = new Course(this.addedCourseTitle, this.addedCourseSemester, this.addedCourseGrade);
             this.courses.push(newCourse);
+            this.clearAddCourseForm();
+        },
+        clearAddCourseForm: function(){
+            this.addedCourseTitle = ""
+            this.addedCourseSemester = ""
+            this.addedCourseGrade = ""
         }
     }
 }
